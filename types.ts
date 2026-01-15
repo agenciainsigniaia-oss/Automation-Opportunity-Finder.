@@ -18,33 +18,36 @@ export interface Client {
 }
 
 export interface DiagnosticData {
+  clientName: string;
+  industry: string;
   tools: string[];
   painPoints: string[];
-  manualHoursPerWeek: number;
-  hourlyRate: number;
-  voiceNoteUrl?: string;
-  voiceTranscript?: string;
+  customTools?: string[];
+  audioBase64?: string; // Raw base64 audio data
 }
 
 export interface Opportunity {
   id: string;
   title: string;
   description: string;
-  effort: 'Low' | 'Medium' | 'High';
-  impact: 'Low' | 'Medium' | 'High';
-  estimatedSavings: number; // Monthly
+  effort: 'Bajo' | 'Medio' | 'Alto';
+  impact: 'Bajo' | 'Medio' | 'Alto';
+  estimatedSavings: string; // Formatted string e.g. "$1,200/mes"
 }
 
 export interface AnalysisResult {
+  problemSummary: string; // New field for the AI summary
   opportunities: Opportunity[];
   totalSavingsMonth: number;
   totalSavingsYear: number;
   roiMultiplier: number;
   implementationCost: number;
+  chartData: { month: string; manual: number; automated: number }[];
 }
 
 export enum ViewState {
   DASHBOARD = 'DASHBOARD',
   WIZARD = 'WIZARD',
-  REPORT = 'REPORT'
+  REPORT = 'REPORT',
+  SETTINGS = 'SETTINGS'
 }

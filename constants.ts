@@ -10,7 +10,7 @@ export const MOCK_CLIENTS: Client[] = [
     industry: 'SaaS',
     status: ClientStatus.ACTIVE_PROPOSAL,
     avatarUrl: 'https://picsum.photos/100/100?random=1',
-    lastContact: '2 hours ago'
+    lastContact: 'Hace 2 horas'
   },
   {
     id: '2',
@@ -18,36 +18,35 @@ export const MOCK_CLIENTS: Client[] = [
     email: 'sarah@fintech.io',
     companyName: 'FinFlow',
     countryCode: 'SG',
-    industry: 'Finance',
+    industry: 'Finanzas',
     status: ClientStatus.LEAD,
     avatarUrl: 'https://picsum.photos/100/100?random=2',
-    lastContact: '1 day ago'
+    lastContact: 'Hace 1 día'
   },
   {
     id: '3',
     name: 'Alex Rivera',
     email: 'alex@buildit.com',
-    companyName: 'BuildIt Construction',
+    companyName: 'Constructora BuildIt',
     countryCode: 'MX',
-    industry: 'Construction',
+    industry: 'Construcción',
     status: ClientStatus.CONVERTED,
     avatarUrl: 'https://picsum.photos/100/100?random=3',
-    lastContact: '3 days ago'
+    lastContact: 'Hace 3 días'
   }
 ];
 
 export const AVAILABLE_TOOLS = [
-  'HubSpot', 'Salesforce', 'Zapier', 'Make (Integromat)', 
-  'Slack', 'Microsoft Teams', 'Notion', 'Airtable', 
-  'Quickbooks', 'Xero', 'Shopify', 'WordPress'
+  'GHL', 'n8n', 'Make', 'Airtable', 
+  'Whatsapp', 'Zapier', 'Wordpress'
 ];
 
 export const INDUSTRIES = [
-  'SaaS / Tech', 'E-commerce', 'Finance', 'Healthcare', 
-  'Construction', 'Real Estate', 'Legal', 'Marketing Agency'
+  'SaaS / Tech', 'E-commerce', 'Finanzas', 'Salud', 
+  'Construcción', 'Inmobiliaria', 'Legal', 'Agencia de Marketing'
 ];
 
 export const PAIN_POINTS_SUGGESTIONS = [
-  'Data Entry Errors', 'Slow Lead Response', 'Invoicing Delays', 
-  'Customer Support Overload', 'Reporting Manual Work', 'Inventory Sync Issues'
+  'Errores de Entrada de Datos', 'Respuesta Lenta a Leads', 'Retrasos en Facturación', 
+  'Sobrecarga de Soporte', 'Reportes Manuales', 'Problemas de Sync de Inventario'
 ];
