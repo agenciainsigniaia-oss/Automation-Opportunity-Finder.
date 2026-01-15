@@ -1,0 +1,7 @@
+{
+  "name": "Automation Opportunity Finder",
+  "description": "High-impact diagnostic platform for AI consultants to transform operational interviews into ROI-based proposals.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
