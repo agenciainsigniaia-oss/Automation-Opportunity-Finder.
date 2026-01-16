@@ -10,7 +10,8 @@ export const MOCK_CLIENTS: Client[] = [
     industry: 'SaaS',
     status: ClientStatus.ACTIVE_PROPOSAL,
     avatarUrl: 'https://picsum.photos/100/100?random=1',
-    lastContact: 'Hace 2 horas'
+    lastContact: 'Hace 2 horas',
+    urgency: 'high'
   },
   {
     id: '2',
@@ -21,7 +22,8 @@ export const MOCK_CLIENTS: Client[] = [
     industry: 'Finanzas',
     status: ClientStatus.LEAD,
     avatarUrl: 'https://picsum.photos/100/100?random=2',
-    lastContact: 'Hace 1 día'
+    lastContact: 'Hace 1 día',
+    urgency: 'medium'
   },
   {
     id: '3',
@@ -32,21 +34,22 @@ export const MOCK_CLIENTS: Client[] = [
     industry: 'Construcción',
     status: ClientStatus.CONVERTED,
     avatarUrl: 'https://picsum.photos/100/100?random=3',
-    lastContact: 'Hace 3 días'
+    lastContact: 'Hace 3 días',
+    urgency: 'low'
   }
 ];
 
 export const AVAILABLE_TOOLS = [
-  'GHL', 'n8n', 'Make', 'Airtable', 
+  'GHL', 'n8n', 'Make', 'Airtable',
   'Whatsapp', 'Zapier', 'Wordpress'
 ];
 
 export const INDUSTRIES = [
-  'SaaS / Tech', 'E-commerce', 'Finanzas', 'Salud', 
+  'SaaS / Tech', 'E-commerce', 'Finanzas', 'Salud',
   'Construcción', 'Inmobiliaria', 'Legal', 'Agencia de Marketing'
 ];
 
 export const PAIN_POINTS_SUGGESTIONS = [
-  'Errores de Entrada de Datos', 'Respuesta Lenta a Leads', 'Retrasos en Facturación', 
+  'Errores de Entrada de Datos', 'Respuesta Lenta a Leads', 'Retrasos en Facturación',
   'Sobrecarga de Soporte', 'Reportes Manuales', 'Problemas de Sync de Inventario'
 ];

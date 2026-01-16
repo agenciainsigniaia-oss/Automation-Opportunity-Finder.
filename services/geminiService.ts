@@ -2,8 +2,8 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { DiagnosticData, AnalysisResult } from '../types';
 
 // Initialize Gemini Client
-// NOTE: process.env.API_KEY must be set in the environment.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// NOTE: import.meta.env.VITE_GEMINI_API_KEY must be set in the environment.
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
 export const generateAnalysis = async (data: DiagnosticData): Promise<AnalysisResult> => {
   try {

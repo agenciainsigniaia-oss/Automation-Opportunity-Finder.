@@ -15,6 +15,7 @@ export interface Client {
   status: ClientStatus;
   avatarUrl?: string;
   lastContact?: string;
+  urgency?: 'high' | 'medium' | 'low';
 }
 
 export interface DiagnosticData {
@@ -42,6 +43,7 @@ export interface AnalysisResult {
   totalSavingsYear: number;
   roiMultiplier: number;
   implementationCost: number;
+  monthlyRetainer: number; // New: Consultant fee
   chartData: { month: string; manual: number; automated: number }[];
 }
 

@@ -1,65 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/ui/Layout';
 import { Dashboard } from './components/Dashboard';
 import { DiagnosticWizard } from './components/DiagnosticWizard';
 import { ReportView } from './components/ReportView';
 import { SettingsView } from './components/SettingsView';
-import { ViewState, AnalysisResult } from './types';
+import { PublicReportView } from './components/PublicReportView';
+import { QuotesManager } from './components/QuotesManager';
+import { ClientsManager } from './components/ClientsManager';
+import { AppProvider, useAppContext } from './AppContext';
 
-function App() {
-  const [currentView, setCurrentView] = useState<ViewState>(ViewState.DASHBOARD);
-  // Default to dark mode to match initial design
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
-
-  // Toggle class on html element
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  const handleAnalysisComplete = (result: AnalysisResult) => {
-    setAnalysisResult(result);
-    setCurrentView(ViewState.REPORT);
-  };
-
-  const renderView = () => {
-    switch(currentView) {
-      case ViewState.DASHBOARD:
-        return <Dashboard onNavigate={setCurrentView} />;
-      case ViewState.WIZARD:
-        return (
-          <DiagnosticWizard 
-            onComplete={handleAnalysisComplete} 
-            onCancel={() => setCurrentView(ViewState.DASHBOARD)} 
-          />
-        );
-      case ViewState.REPORT:
-        return (
-          <ReportView 
-            data={analysisResult} 
-            onBack={() => setCurrentView(ViewState.DASHBOARD)} 
-          />
-        );
-      case ViewState.SETTINGS:
-        return (
-          <SettingsView 
-            isDarkMode={isDarkMode} 
-            toggleTheme={() => setIsDarkMode(!isDarkMode)} 
-          />
-        );
-      default:
-        return <Dashboard onNavigate={setCurrentView} />;
-    }
-  };
+const AppRoutes = () => {
+  const { analysisResult, setAnalysisResult, isDarkMode, toggleTheme } = useAppContext();
 
   return (
-    <Layout currentView={currentView} onChangeView={setCurrentView}>
-      {renderView()}
-    </Layout>
+    <Routes>
+      <Route path="/share/:token" element={<PublicReportView />} />
+      <Route path="*" element={
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/wizard" element={<DiagnosticWizard />} />
+            <Route
+              path="/report"
+              element={
+                analysisResult ? <ReportView data={analysisResult} /> : <Navigate to="/" replace />
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <SettingsView isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+              }
+            />
+            <Route path="/quotes" element={<QuotesManager />} />
+            <Route path="/clients" element={<ClientsManager />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Layout>
+      } />
+    </Routes>
+  );
+};
+
+function App() {
+  return (
+    <AppProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </AppProvider>
   );
 }
 
