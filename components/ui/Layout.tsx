@@ -7,8 +7,10 @@ import {
   Settings,
   Bell,
   Mail,
-  Users
+  Users,
+  LogOut
 } from 'lucide-react';
+import { useAuth } from '../auth/AuthProvider';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -17,8 +19,14 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/login');
+  };
 
   return (
     <div className="flex h-screen w-full bg-background text-text-main overflow-hidden transition-colors duration-300">
@@ -64,15 +72,27 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           />
         </nav>
 
-        <div className="p-4 border-t border-gray-200 dark:border-surfaceHighlight">
+        <div className="p-4 border-t border-gray-200 dark:border-surfaceHighlight space-y-2">
+          {user && (
+            <div className="px-3 py-2 mb-2 hidden lg:block">
+              <p className="text-xs text-text-muted truncate">{user.email}</p>
+            </div>
+          )}
           <SidebarItem
             icon={<Settings size={20} />}
             label="Configuración"
             active={isActive('/settings')}
             onClick={() => navigate('/settings')}
           />
+          <SidebarItem
+            icon={<LogOut size={20} />}
+            label="Cerrar sesión"
+            active={false}
+            onClick={handleLogout}
+          />
         </div>
       </aside>
+
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col h-full overflow-hidden relative">
