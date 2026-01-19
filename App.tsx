@@ -8,6 +8,7 @@ import { SettingsView } from './components/SettingsView';
 import { PublicReportView } from './components/PublicReportView';
 import { QuotesManager } from './components/QuotesManager';
 import { ClientsManager } from './components/ClientsManager';
+import { OfflineNotice } from './components/OfflineNotice';
 import { AppProvider, useAppContext } from './AppContext';
 
 // Auth imports
@@ -64,6 +65,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <AppRoutes />
+          <OfflineNotice />
         </AuthProvider>
       </BrowserRouter>
     </AppProvider>

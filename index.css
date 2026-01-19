@@ -52,7 +52,15 @@
   body {
     @apply bg-background text-text-main transition-colors duration-300;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
+}
+
+/* PWA & Mobile Optimizations */
+button, a, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom scrollbar */
